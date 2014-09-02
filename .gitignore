@@ -1,0 +1,5 @@
+node_modules
+
+# Generated files
+client/templates.js
+public/css/app.css
