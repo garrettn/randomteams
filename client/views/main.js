@@ -9,7 +9,6 @@ var _ = require('underscore');
 var domify = require('domify');
 var dom = require('ampersand-dom');
 var templates = require('../templates');
-var tracking = require('../helpers/metrics');
 var setFavicon = require('favicon-setter');
 
 
@@ -27,7 +26,7 @@ module.exports = View.extend({
         document.head.appendChild(domify(templates.head()));
 
         // main renderer
-        this.renderWithTemplate({me: me});
+        this.renderWithTemplate();
 
         // init and configure our page switcher
         this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
