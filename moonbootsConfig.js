@@ -1,6 +1,5 @@
 var config = require('getconfig');
 var stylizer = require('stylizer');
-var templatizer = require('templatizer');
 
 // for reuse
 var appDir = __dirname + '/client';

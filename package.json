@@ -25,7 +25,6 @@
     "jadeify": "^2.5.1",
     "moonboots_hapi": "^2.4.0",
     "stylizer": "^1.0.0",
-    "templatizer": "^1.0.0",
     "underscore": "^1.6.0"
   },
   "devDependencies": {},
