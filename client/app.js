@@ -47,10 +47,6 @@ var app = {
 
     showHomePage: function () {
       this.mainView.setNewPage(new HomePageView());
-    },
-
-    showCollectionsPage: function () {
-      alert('Collections!');
     }
 };
 
