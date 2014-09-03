@@ -67,7 +67,7 @@ var app = {
     },
 
     showGroupPage: function (id) {
-      this.groups.getOrFetch(id, function (err, group) {
+      this.groups.getOrFetch(parseInt(id), function (err, group) {
         if (!err) {
           this.mainView.setNewPage(new GroupPageView({
             model: group
