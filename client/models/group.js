@@ -27,5 +27,8 @@ module.exports = AmpModel.extend({
   },
   collections: {
     people: PersonCollection
+  },
+  createRandomTeams: function () {
+
   }
 });

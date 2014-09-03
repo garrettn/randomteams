@@ -6,6 +6,7 @@ module.exports = Router.extend({
     routes: {
         '': 'home',
         'groups/:id': 'group',
+        'groups/:id/teams/:size': 'teams',
         '(*path)': 'catchAll'
     },
 

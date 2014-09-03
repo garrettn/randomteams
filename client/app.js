@@ -10,6 +10,7 @@ var GroupsCollection = require('./models/group-collection');
 var MainView = require('./views/main');
 var HomePageView = require('./pages/home');
 var GroupPageView = require('./pages/group');
+var TeamsPageView = require('./pages/teams');
 var domReady = require('domready');
 
 
@@ -35,6 +36,7 @@ var app = {
             this.mainView.on('navigate', this.navigate, this);
             this.router.on('route:home', this.showHomePage, this);
             this.router.on('route:group', this.showGroupPage, this);
+            this.router.on('route:teams', this.showRandomTeams, this);
 
             // we have what we need, we can now start our router and show the appropriate page
             this.router.history.start({pushState: true, root: '/'});
@@ -64,6 +66,17 @@ var app = {
       this.groups.getOrFetch(parseInt(id), {all: true}, function (err, group) {
         if (!err) {
           this.mainView.setNewPage(new GroupPageView({
+            model: group
+          }));
+        }
+      }.bind(this));
+    },
+
+    showRandomTeams: function (id, size) {
+      this.groups.getOrFetch(parseInt(id), {all: true}, function (err, group) {
+        if (!err) {
+          group.createRandomTeams();
+          this.mainView.setNewPage(new TeamsPageView({
             model: group
           }));
         }
