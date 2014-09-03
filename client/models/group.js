@@ -8,11 +8,20 @@ module.exports = AmpModel.extend({
     id: 'number',
     name: ['string', true, '']
   },
+  session: {
+    teamSize: ['number', true, 2]
+  },
   derived: {
     pageUrl: {
       deps: ['id'],
       fn: function () {
         return '/groups/' + this.id;
+      }
+    },
+    teamGeneratorUrl: {
+      deps: ['id', 'teamSize'],
+      fn: function () {
+        return '/groups/' + this.id + '/teams/' + this.teamSize;
       }
     }
   },

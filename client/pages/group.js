@@ -17,6 +17,27 @@ module.exports = View.extend({
       'model.name': {
         type: 'text',
         hook: 'group-name'
+      },
+      'model.teamSize': {
+        type: 'value',
+        hook: 'team-size'
+      },
+      'model.people.length': {
+        type: 'attribute',
+        hook: 'team-size',
+        name: 'max'
+      },
+      'model.teamGeneratorUrl': {
+        type: 'attribute',
+        hook: 'team-generator-url',
+        name: 'href'
       }
+    },
+    events: {
+      'change [data-hook~=team-size]': 'changeTeamSize'
+    },
+    // For some reason the binding won't actually update the model.
+    changeTeamSize: function (e) {
+      this.model.teamSize = parseInt(e.target.value);
     }
 });
