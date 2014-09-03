@@ -52,22 +52,16 @@ var app = {
     },
 
     showHomePage: function () {
-      if (!this.groups.length) {
-        this.groups.fetch({
-          success: function (groups) {
-            this.mainView.setNewPage(new HomePageView({
-              collection: groups
-            }));
-          }.bind(this)
-        })
-      }
       this.mainView.setNewPage(new HomePageView({
         collection: this.groups
       }));
+      if (!this.groups.length) {
+        this.groups.fetch();
+      }
     },
 
     showGroupPage: function (id) {
-      this.groups.getOrFetch(parseInt(id), function (err, group) {
+      this.groups.getOrFetch(parseInt(id), {all: true}, function (err, group) {
         if (!err) {
           this.mainView.setNewPage(new GroupPageView({
             model: group
