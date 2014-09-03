@@ -36,12 +36,9 @@ module.exports = {
             cssDir + '/app.css'
         ],
         beforeBuildJS: function () {
-            // This re-builds our template files from jade each time the app's main
-            // js file is requested. Which means you can seamlessly change jade and
-            // refresh in your browser to get new templates.
-            if (config.isDev) {
-                templatizer(__dirname + '/templates', appDir + '/templates.js');
-            }
+        },
+        browserify: {
+          transforms: ['jadeify']
         },
         beforeBuildCSS: function (done) {
             // We only want to do this in dev mode. If it's not in dev mode, this

@@ -8,12 +8,13 @@ var ViewSwitcher = require('ampersand-view-switcher');
 var _ = require('underscore');
 var domify = require('domify');
 var dom = require('ampersand-dom');
-var templates = require('../templates');
+var headTemplate = require('../templates/head.jade');
+var bodyTemplate = require('../templates/body.jade');
 var setFavicon = require('favicon-setter');
 
 
 module.exports = View.extend({
-    template: templates.body,
+    template: bodyTemplate,
     initialize: function () {
         // this marks the correct nav item selected
         this.listenTo(app.router, 'page', this.handleNewPage);
@@ -23,7 +24,7 @@ module.exports = View.extend({
     },
     render: function () {
         // some additional stuff we want to add to the document head
-        document.head.appendChild(domify(templates.head()));
+        document.head.appendChild(domify(headTemplate()));
 
         // main renderer
         this.renderWithTemplate();
