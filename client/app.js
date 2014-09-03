@@ -5,6 +5,7 @@ var config = require('clientconfig');
 
 var Router = require('./router');
 var MainView = require('./views/main');
+var HomePageView = require('./pages/home');
 var domReady = require('domready');
 
 
@@ -18,12 +19,14 @@ window.app = {
         // this ensures the document has a body, etc.
         domReady(function () {
             // init our main view
-            var mainView = this.view = new MainView({
+            this.mainView = new MainView({
                 el: document.body
             });
 
             // ...and render it
-            mainView.render();
+            this.mainView.render();
+
+            this.router.on('route:home', this.showHomePage, this);
 
             // we have what we need, we can now start our router and show the appropriate page
             this.router.history.start({pushState: true, root: '/'});
@@ -38,6 +41,10 @@ window.app = {
     navigate: function (page) {
         var url = (page.charAt(0) === '/') ? page.slice(1) : page;
         this.router.history.navigate(url, {trigger: true});
+    },
+
+    showHomePage: function () {
+      this.mainView.setNewPage(new HomePageView());
     }
 };
 

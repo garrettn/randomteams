@@ -9,11 +9,6 @@ module.exports = Router.extend({
         '(*path)': 'catchAll'
     },
 
-    // ------- ROUTE HANDLERS ---------
-    home: function () {
-        this.trigger('page', new HomePage());
-    },
-
     catchAll: function () {
         this.redirectTo('');
     }

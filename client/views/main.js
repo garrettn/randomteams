@@ -15,10 +15,6 @@ var setFavicon = require('favicon-setter');
 
 module.exports = View.extend({
     template: bodyTemplate,
-    initialize: function () {
-        // this marks the correct nav item selected
-        this.listenTo(app.router, 'page', this.handleNewPage);
-    },
     events: {
         'click a[href]': 'handleLinkClick'
     },
@@ -49,7 +45,7 @@ module.exports = View.extend({
         return this;
     },
 
-    handleNewPage: function (view) {
+    setNewPage: function (view) {
         // tell the view switcher to render the new one
         this.pageSwitcher.set(view);
 
