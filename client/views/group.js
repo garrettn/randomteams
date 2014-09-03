@@ -11,8 +11,12 @@ module.exports = View.extend({
       },
       'model.pageUrl': {
         type: 'attribute',
-        hook: 'group-name',
+        hook: 'group-link',
         name: 'href'
+      },
+      'model.people.length': {
+        type: 'text',
+        hook: 'group-number'
       }
     }
 });
