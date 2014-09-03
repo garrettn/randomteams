@@ -6,6 +6,7 @@ var HomePage = require('./pages/home');
 module.exports = Router.extend({
     routes: {
         '': 'home',
+        'collections': 'collections',
         '(*path)': 'catchAll'
     },
 

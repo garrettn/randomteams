@@ -9,7 +9,7 @@ var HomePageView = require('./pages/home');
 var domReady = require('domready');
 
 
-window.app = {
+var app = {
     // this is the the whole app initter
     blastoff: function () {
         // init our URL handlers and the history tracker
@@ -26,7 +26,9 @@ window.app = {
             // ...and render it
             this.mainView.render();
 
+            this.mainView.on('navigate', this.navigate, this);
             this.router.on('route:home', this.showHomePage, this);
+            this.router.on('route:collections', this.showCollectionsPage, this);
 
             // we have what we need, we can now start our router and show the appropriate page
             this.router.history.start({pushState: true, root: '/'});
@@ -45,6 +47,10 @@ window.app = {
 
     showHomePage: function () {
       this.mainView.setNewPage(new HomePageView());
+    },
+
+    showCollectionsPage: function () {
+      alert('Collections!');
     }
 };
 

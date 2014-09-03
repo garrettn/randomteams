@@ -34,9 +34,6 @@ module.exports = View.extend({
 
                 // add a class specifying it's active
                 dom.addClass(newView.el, 'active');
-
-                // store an additional reference, just because
-                app.currentPage = newView;
             }
         });
 
@@ -61,7 +58,7 @@ module.exports = View.extend({
         // and it's a local url, navigate internally
         if (local && !e.ctrlKey && !e.shiftKey && !e.altKey && !e.metaKey) {
             e.preventDefault();
-            app.navigate(aTag.pathname);
+            this.trigger('navigate', aTag.pathname);
         }
     },
 
