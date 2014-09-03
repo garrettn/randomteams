@@ -1,4 +1,5 @@
 node_modules
+npm-debug.log
 
 # Generated files
 client/templates.js
