@@ -4,6 +4,9 @@ var logger = require('andlog');
 var config = require('clientconfig');
 
 var Router = require('./router');
+
+var GroupsCollection = require('./models/group-collection');
+
 var MainView = require('./views/main');
 var HomePageView = require('./pages/home');
 var domReady = require('domready');
@@ -14,6 +17,8 @@ var app = {
     blastoff: function () {
         // init our URL handlers and the history tracker
         this.router = new Router();
+
+        this.groups = new GroupsCollection();
 
         // wait for document ready to render our main view
         // this ensures the document has a body, etc.
@@ -46,7 +51,18 @@ var app = {
     },
 
     showHomePage: function () {
-      this.mainView.setNewPage(new HomePageView());
+      if (!this.groups.length) {
+        this.groups.fetch({
+          success: function (groups) {
+            this.mainView.setNewPage(new HomePageView({
+              collection: groups
+            }));
+          }.bind(this)
+        })
+      }
+      this.mainView.setNewPage(new HomePageView({
+        collection: this.groups
+      }));
     }
 };
 
