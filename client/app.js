@@ -9,6 +9,7 @@ var GroupsCollection = require('./models/group-collection');
 
 var MainView = require('./views/main');
 var HomePageView = require('./pages/home');
+var GroupPageView = require('./pages/group');
 var domReady = require('domready');
 
 
@@ -33,7 +34,7 @@ var app = {
 
             this.mainView.on('navigate', this.navigate, this);
             this.router.on('route:home', this.showHomePage, this);
-            this.router.on('route:collections', this.showCollectionsPage, this);
+            this.router.on('route:group', this.showGroupPage, this);
 
             // we have what we need, we can now start our router and show the appropriate page
             this.router.history.start({pushState: true, root: '/'});
@@ -63,6 +64,16 @@ var app = {
       this.mainView.setNewPage(new HomePageView({
         collection: this.groups
       }));
+    },
+
+    showGroupPage: function (id) {
+      this.groups.getOrFetch(id, function (err, group) {
+        if (!err) {
+          this.mainView.setNewPage(new GroupPageView({
+            model: group
+          }));
+        }
+      }.bind(this));
     }
 };
 

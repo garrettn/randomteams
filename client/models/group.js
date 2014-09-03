@@ -1,5 +1,6 @@
 // Group Model - group.js
 var AmpModel = require('ampersand-model');
+var PersonCollection = require('./person-collection');
 
 
 module.exports = AmpModel.extend({
@@ -14,5 +15,8 @@ module.exports = AmpModel.extend({
         return '/groups/' + this.id;
       }
     }
+  },
+  collections: {
+    people: PersonCollection
   }
 });
