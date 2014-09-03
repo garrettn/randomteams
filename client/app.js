@@ -8,11 +8,9 @@ var MainView = require('./views/main');
 var domReady = require('domready');
 
 
-module.exports = {
+window.app = {
     // this is the the whole app initter
     blastoff: function () {
-        var self = window.app = this;
-
         // init our URL handlers and the history tracker
         this.router = new Router();
 
@@ -20,7 +18,7 @@ module.exports = {
         // this ensures the document has a body, etc.
         domReady(function () {
             // init our main view
-            var mainView = self.view = new MainView({
+            var mainView = this.view = new MainView({
                 el: document.body
             });
 
@@ -28,8 +26,8 @@ module.exports = {
             mainView.render();
 
             // we have what we need, we can now start our router and show the appropriate page
-            self.router.history.start({pushState: true, root: '/'});
-        });
+            this.router.history.start({pushState: true, root: '/'});
+        }.bind(this));
     },
 
     // This is how you navigate around the app.
@@ -44,4 +42,4 @@ module.exports = {
 };
 
 // run it
-module.exports.blastoff();
+app.blastoff();
