@@ -27,7 +27,7 @@ module.exports = View.extend({
         type: 'value',
         hook: 'team-size'
       },
-      'model.people.length': {
+      'model.numPeople': {
         type: 'attribute',
         hook: 'team-size',
         name: 'max'

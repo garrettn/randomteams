@@ -7,11 +7,5 @@ module.exports = AmpCollection.extend({
     model: Person,
     url: function () {
       return this.parent.collection.url + '/' + this.parent.getId() + '/people';
-    },
-    initialize: function () {
-      this.listenTo(this, 'add remove reset', this.notifyLengthChange);
-    },
-    notifyLengthChange: function () {
-      this.trigger('change:length', this.length);
     }
 });

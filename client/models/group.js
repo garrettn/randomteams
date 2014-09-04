@@ -15,7 +15,8 @@ module.exports = AmpModel.extend({
     }
   },
   session: {
-    teamSize: ['number', true, 2]
+    teamSize: ['number', true, 2],
+    numPeople: ['number', true, 0]
   },
   derived: {
     pageUrl: {
@@ -33,6 +34,12 @@ module.exports = AmpModel.extend({
   },
   collections: {
     people: PersonCollection
+  },
+  initialize: function () {
+    this.numPeople = this.people.length;
+    this.listenTo(this.people, 'add remove reset', function () {
+      this.numPeople = this.people.length;
+    });
   },
   createRandomTeams: function () {
     var shuffled = this.people.shuffle();
