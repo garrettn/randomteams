@@ -75,9 +75,11 @@ var app = {
     showRandomTeams: function (id, size) {
       this.groups.getOrFetch(parseInt(id), {all: true}, function (err, group) {
         if (!err) {
-          group.createRandomTeams();
+          group.teamSize = parseInt(size);
+          var teams = group.createRandomTeams();
           this.mainView.setNewPage(new TeamsPageView({
-            model: group
+            model: group,
+            collection: teams
           }));
         }
       }.bind(this));

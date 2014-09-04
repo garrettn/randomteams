@@ -1,4 +1,11 @@
-h2
-  span(data-hook="group-name")
-  |: Random teams of&nbsp;
-  span(data-hook="team-size")
+section.page.teams
+  h2
+    span(data-hook="group-name")
+    |: Random teams of&nbsp;
+    span(data-hook="team-size")
+
+  .btn-group
+    a.btn.btn-default(data-hook="group-page") Back
+    button.btn.btn-primary(data-hook="generate-new") Generate new teams
+
+  div(data-hook="teams")
