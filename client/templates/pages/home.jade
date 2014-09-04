@@ -1,3 +1,7 @@
 section.page.home
   h2 Your groups
   .list-group(data-hook="groups")
+  form.input-group(data-hook="new-group")
+    input.form-control(type="text", placeholder="Create new group", data-hook="new-group-name")
+    span.input-group-btn
+      button.btn.btn-primary(type="submit", data-hook="new-group-create") Create

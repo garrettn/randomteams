@@ -8,7 +8,11 @@ var TeamCollection = require('./team-collection');
 module.exports = AmpModel.extend({
   props: {
     id: 'number',
-    name: ['string', true, '']
+    name: {
+      type: 'string',
+      required: true,
+      default: ''
+    }
   },
   session: {
     teamSize: ['number', true, 2]

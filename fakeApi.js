@@ -34,7 +34,7 @@ var groups = [
     ]
   }
 ];
-var id = 2;
+var id = groups.length + 1;
 
 function get(id) {
     return _.findWhere(groups, {id: parseInt(id + '', 10)});

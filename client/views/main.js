@@ -34,7 +34,13 @@ module.exports = View.extend({
 
                 // add a class specifying it's active
                 dom.addClass(newView.el, 'active');
-            }
+
+                // listen for navigate events and pass them on
+                this.listenTo(newView, 'navigate', function (where) {
+                  this.trigger('navigate', where);
+                });
+
+            }.bind(this)
         });
 
         // setting a favicon for fun (note, it's dynamic)
