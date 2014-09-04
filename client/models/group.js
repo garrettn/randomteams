@@ -30,6 +30,12 @@ module.exports = AmpModel.extend({
       fn: function () {
         return '/groups/' + this.id + '/teams/' + this.teamSize;
       }
+    },
+    enoughPeople: {
+      deps: ['numPeople'],
+      fn: function () {
+        return this.numPeople > 2;
+      }
     }
   },
   collections: {

@@ -23,6 +23,10 @@ module.exports = View.extend({
         type: 'text',
         hook: 'group-name'
       },
+      'model.enoughPeople': {
+        type: 'toggle',
+        hook: 'team-generator'
+      },
       'model.teamSize': {
         type: 'value',
         hook: 'team-size'
