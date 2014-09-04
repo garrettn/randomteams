@@ -11,6 +11,11 @@ module.exports = View.extend({
     render: function () {
       this.renderWithTemplate();
       this.renderCollection(this.model.people, PersonView, this.queryByHook('people'));
+
+      this.cacheElements({
+          nameField: '[data-hook~=new-person-name]'
+      });
+
       return this;
     },
     bindings: {
@@ -34,10 +39,23 @@ module.exports = View.extend({
       }
     },
     events: {
-      'change [data-hook~=team-size]': 'changeTeamSize'
+      'change [data-hook~=team-size]': 'changeTeamSize',
+      'submit [data-hook~=new-person]': 'addPerson'
     },
     // For some reason the binding won't actually update the model.
     changeTeamSize: function (e) {
       this.model.teamSize = parseInt(e.target.value);
+    },
+    addPerson: function (e) {
+      e.preventDefault();
+      var name = this.nameField.value;
+      if (name.length > 0) {
+        this.model.people.create({name: name}, {
+          wait: true,
+          success: function (person) {
+            this.nameField.value = '';
+          }.bind(this)
+        })
+      }
     }
 });

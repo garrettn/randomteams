@@ -35,6 +35,7 @@ var groups = [
   }
 ];
 var id = groups.length + 1;
+var personId = 21;
 
 function get(id) {
     return _.findWhere(groups, {id: parseInt(id + '', 10)});
@@ -89,6 +90,20 @@ exports.register = function (plugin, options, next) {
             if (found) _.extend(found, request.payload);
             reply(found).code(found ? 200 : 404);
         }
+    });
+
+    plugin.route({
+      method: 'POST',
+      path: '/api/groups/{id}/people',
+      handler: function (request, reply) {
+        var person = request.payload,
+          found = get(request.params.id);
+        if (found) {
+          person.id = personId++;
+          found.people.push(person);
+        }
+        reply(person).code(found ? 201 : 404);
+      }
     });
 
     next();

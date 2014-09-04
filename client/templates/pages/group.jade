@@ -7,3 +7,8 @@ section.page.group
     input(type="number", min="2", step="1", data-hook="team-size")
 
   ul.list-group(data-hook="people")
+
+  form.input-group(data-hook="new-person")
+    input.form-control(type="text", placeholder="Add new person", data-hook="new-person-name")
+    span.input-group-btn
+      button.btn.btn-primary(type="submit", data-hook="new-person-add") Add

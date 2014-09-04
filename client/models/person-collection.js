@@ -5,7 +5,9 @@ var Person = require('./person');
 
 module.exports = AmpCollection.extend({
     model: Person,
-    url: '/api/people',
+    url: function () {
+      return this.parent.collection.url + '/' + this.parent.getId() + '/people';
+    },
     initialize: function () {
       this.listenTo(this, 'add remove reset', this.notifyLengthChange);
     },
